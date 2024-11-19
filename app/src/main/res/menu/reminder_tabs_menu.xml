@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/upcomingTab"
+        android:title="Upcoming"/>
+    <item
+        android:id="@+id/overdueTab"
+        android:title="Overdue"/>
+    <item
+        android:id="@+id/completeTab"
+        android:title="Completed"/>
+
+</menu>
