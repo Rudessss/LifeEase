@@ -1,22 +1,22 @@
 package com.example.myproject;
 
 public class ReminderItem {
-    String remainderPriotiry, remainderTitle, remainderTime;
+    String remainderPriority, remainderTitle, remainderTime;
     boolean checkBox;
 
-    public ReminderItem(String remainderPriotiry, String remainderTitle, String remainderTime, boolean checkBox) {
-        this.remainderPriotiry = remainderPriotiry;
+    public ReminderItem(String remainderPriority, String remainderTitle, String remainderTime, boolean checkBox) {
+        this.remainderPriority = remainderPriority;
         this.remainderTitle = remainderTitle;
         this.remainderTime = remainderTime;
         this.checkBox = checkBox;
     }
 
-    public String getRemainderPriotiry() {
-        return remainderPriotiry;
+    public String getRemainderPriority() {
+        return remainderPriority;
     }
 
-    public void setRemainderPriotiry(String remainderPriotiry) {
-        this.remainderPriotiry = remainderPriotiry;
+    public void setRemainderPriority(String remainderPriority) {
+        this.remainderPriority = remainderPriority;
     }
 
     public String getRemainderTitle() {
