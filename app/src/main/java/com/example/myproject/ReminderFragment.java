@@ -37,8 +37,6 @@ public class ReminderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reminder, container, false);
-        reminderAddNew = view.findViewById(R.id.reminderAddNew);
-        reminderAddNew.setOnClickListener(v -> showAddTaskDialog());
         BottomNavigationView bottomNavigationView = view.findViewById(R.id.reminderTabMenu);
 
         // Get the items from main activity
@@ -65,6 +63,9 @@ public class ReminderFragment extends Fragment {
             return true;
         });
 
+        reminderAddNew = view.findViewById(R.id.reminderAddNew);
+        reminderAddNew.setOnClickListener(v -> addItem());
+
         return view;
     }
 
@@ -84,41 +85,41 @@ public class ReminderFragment extends Fragment {
         }
     }
 
-    private void showAddTaskDialog() {
+    private void addItem() {
         // Use an AlertDialog to get user input for the task
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Add Task");
 
         // Set up a layout for user input
-        LinearLayout layout = new LinearLayout(requireContext());
+        LinearLayout layout = new LinearLayout(getContext());
         layout.setOrientation(LinearLayout.VERTICAL);
 
         // Task title input
-        EditText titleInput = new EditText(requireContext());
+        final EditText priorityInput = new EditText(getContext());
+        priorityInput.setHint("Task Description");
+        layout.addView(priorityInput);
+
+        // Task description input
+        final EditText titleInput = new EditText(getContext());
         titleInput.setHint("Task Title");
         layout.addView(titleInput);
 
-        // Task description input
-        EditText descriptionInput = new EditText(requireContext());
-        descriptionInput.setHint("Task Description");
-        layout.addView(descriptionInput);
-
-        EditText timeInput = new EditText(requireContext());
-        descriptionInput.setHint("Task Date and Time");
-        layout.addView(descriptionInput);
+        final EditText timeInput = new EditText(getContext());
+        timeInput.setHint("dd-MM-yyyy HH:mm");
+        layout.addView(timeInput);
 
         builder.setView(layout);
 
         // Add buttons
         builder.setPositiveButton("Add", (dialog, which) -> {
+            String description = priorityInput.getText().toString().trim();
             String title = titleInput.getText().toString().trim();
-            String description = descriptionInput.getText().toString().trim();
-            String time = descriptionInput.getText().toString().trim();
+            String time = timeInput.getText().toString().trim();
 
             if (!title.isEmpty()) {
                 // Add new task to the ArrayList
-                ReminderItem newTask = new ReminderItem(title, description, time,false);
-                items.add(newTask);
+                ReminderItem newItem = new ReminderItem(title, description, time,false);
+                items.add(newItem);
 
                 // Optionally update the UI or notify the adapter
                 Toast.makeText(requireContext(), "Task added!", Toast.LENGTH_SHORT).show();
@@ -128,7 +129,6 @@ public class ReminderFragment extends Fragment {
         });
 
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
-
         builder.show();
     }
     
