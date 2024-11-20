@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new HomeFragment(), null);
+        replaceFragment(new HomeFragment(), reminderItems, habitItems);
 
         input_data();
 
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             int itemId = item.getItemId();
 
             if (itemId == R.id.dashboard) {
-                replaceFragment(new HomeFragment(), null);
+                replaceFragment(new HomeFragment(), reminderItems, habitItems);
             } else if (itemId == R.id.habits) {
                 replaceFragment(new HabitFragment(), habitItems);
             } else if (itemId == R.id.inventory) {
@@ -46,10 +46,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void replaceFragment(Fragment fragment, Serializable data){
-        if (data != null) {
+    private void replaceFragment(Fragment fragment, ArrayList<?>... dataLists) {
+        if (dataLists != null) {
             Bundle bundle = new Bundle();
-            bundle.putSerializable("data", data); // Pass the appropriate ArrayList
+
+            // Add the lists to the bundle with unique keys
+            if (dataLists.length > 0 && dataLists[0] != null) {
+                bundle.putSerializable("data", dataLists[0]);
+            }
+            if (dataLists.length > 1 && dataLists[1] != null) {
+                bundle.putSerializable("data2", dataLists[1]);
+            }
+
             fragment.setArguments(bundle);
         }
 
@@ -68,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         inventoryItems.add(new InventoryItem("Cards", "Drawer",R.drawable.ic_baseline_home_24));
         inventoryItems.add(new InventoryItem("Key", "Drawer",R.drawable.ic_baseline_storage_24));
 
-        habitItems.add(new HabitItem(R.drawable.ic_baseline_habit_new_24, "Exercise 30 Morning Minutes", "Do 30 minutes morning exercise everyday"));
+        habitItems.add(new HabitItem(R.drawable.ic_baseline_sports_baseball_24, "Exercise 30 Morning Minutes", "Do 30 minutes morning exercise everyday"));
         habitItems.add(new HabitItem(R.drawable.ic_baseline_search_24, "Read Book 1 Hour", "Focus reading a book for 1 hor straight without any distraction"));
 
     }

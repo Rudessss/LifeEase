@@ -38,7 +38,8 @@
             android:layout_height="40dp"
             android:layout_below="@id/reminderLabel"
             app:itemTextAppearanceActiveBoldEnabled="true"
-            app:menu="@menu/reminder_tabs_menu" />
+            app:menu="@menu/reminder_tabs_menu"
+            android:background="@color/bg_thr"/>
 
         <FrameLayout
             android:id="@+id/reminderTabs"

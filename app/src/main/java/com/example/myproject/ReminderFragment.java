@@ -96,7 +96,7 @@ public class ReminderFragment extends Fragment {
 
         // Task title input
         final EditText priorityInput = new EditText(getContext());
-        priorityInput.setHint("Task Description");
+        priorityInput.setHint("Task Priority");
         layout.addView(priorityInput);
 
         // Task description input
