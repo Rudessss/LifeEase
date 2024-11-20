@@ -24,10 +24,9 @@ public class TabUpcomingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tab_upcoming, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview);
 
-        items.add(new ReminderItem("High", "Mobile Programing", "07:20",true));
-        items.add(new ReminderItem("Medium", "Deep Learning", "13:20",false));
-        items.add(new ReminderItem("Low", "Operating System", "15:20",false));
-
+        if (getArguments() != null) {
+            items = (ArrayList<ReminderItem>) getArguments().getSerializable("reminders", ArrayList.class);
+        }
 
         // Set up RecyclerView with data
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
