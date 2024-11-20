@@ -31,8 +31,10 @@ public class HabitFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext())); // 4 columns
 
-        items.add(new HabitItem(R.drawable.ic_baseline_habit_new_24, "Exercise 30 Morning Minutes", "Do 30 minutes morning exercise everyday"));
-        items.add(new HabitItem(R.drawable.ic_baseline_search_24, "Read Book 1 Hour", "Focus reading a book for 1 hor straight without any distraction"));
+        // Get the items from main activity
+        if (getArguments() != null) {
+            items = (ArrayList<HabitItem>) getArguments().getSerializable("data", ArrayList.class);
+        }
 
         adapter = new HabitAdapter(items);
         recyclerView.setAdapter(adapter);

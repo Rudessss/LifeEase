@@ -30,10 +30,10 @@ public class InventoryFragment extends Fragment {
         inventoryGrid = view.findViewById(R.id.recyclerview);
         inventoryGrid.setLayoutManager(new GridLayoutManager(getContext(), 4)); // 4 columns
 
-        // Initialize inventory items (populate with example items or load dynamically)
-        items.add(new InventoryItem("Cards", "Drawer",R.drawable.ic_baseline_home_24));
-        items.add(new InventoryItem("Key", "Drawer",R.drawable.ic_baseline_storage_24));
-        // Add more items as needed
+        // Get the items from main activity
+        if (getArguments() != null) {
+            items = (ArrayList<InventoryItem>) getArguments().getSerializable("data", ArrayList.class);
+        }
 
         // Set up adapter
         adapter = new InventoryAdapter(items);

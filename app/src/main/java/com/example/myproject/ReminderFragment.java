@@ -32,10 +32,10 @@ public class ReminderFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reminder, container, false);
         BottomNavigationView bottomNavigationView = view.findViewById(R.id.reminderTabMenu);
 
-        items.add(new ReminderItem("High", "Mobile Programing", "24-10-2023 07:20",true));
-        items.add(new ReminderItem("Medium", "Computer Vision", "24-10-2023 13:20",false));
-        items.add(new ReminderItem("Medium", "Deep Learning", "24-10-2025 13:20",false));
-        items.add(new ReminderItem("Low", "Operating System", "24-11-2024 09:20",false));
+        // Get the items from main activity
+        if (getArguments() != null) {
+            items = (ArrayList<ReminderItem>) getArguments().getSerializable("data", ArrayList.class);
+        }
 
         categorizedItem(items);
 

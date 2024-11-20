@@ -47,7 +47,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.TaskVi
         }
 
         public void bind(ReminderItem task) {
-            remainderPriotiry.setText(task.getRemainderPriotiry());
+            remainderPriotiry.setText(task.getRemainderPriority());
             remainderTitle.setText(task.getRemainderTitle());
             remainderTime.setText(task.getRemainderTime());
             checkBox.setChecked(task.getCheckBox());
