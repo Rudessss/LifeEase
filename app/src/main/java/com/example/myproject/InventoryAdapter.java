@@ -36,7 +36,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
         return inventoryItems.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView itemName;
         ImageView itemImage;
         TextView itemLocation;
@@ -46,6 +46,11 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
             itemName = itemView.findViewById(R.id.itemName);
             itemImage = itemView.findViewById(R.id.itemIcon);
             itemLocation = itemView.findViewById(R.id.itemLocation);
+        }
+
+        @Override
+        public void onClick(View v) {
+            
         }
     }
 }
